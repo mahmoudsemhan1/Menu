@@ -1,0 +1,30 @@
+﻿@model List<Menu.Models.Dish>
+@{
+    ViewData["Title"] = "Menu Index";
+}
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="@item.ImagUrl" class="card-img-top" alt="@item.Name">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text">@item.Price.ToString("C")</p>
+                        <div class="btn-group" role="group" aria-label="Dish actions">
+                            <a class="btn btn-info mr-2" asp-action="Details" asp-route-id="@item.Id">View Dish</a>
+                            <a class="btn btn-danger mx-2" asp-action="Edit" asp-route-id="@item.Id">Edit Dish</a>
+                            <a class="btn btn-danger ml-2" asp-action="Delete" asp-route-id="@item.Id">Delete Dish</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div style="position:fixed; right:25px; bottom: 25px" class="text-white">
+        <a asp-controller="Menu" asp-action="Add" class="btn btn-success">
+            <i class="bi bi-plus-Circle"></i>Add Dish
+        </a>
+    </div>
+</div>
